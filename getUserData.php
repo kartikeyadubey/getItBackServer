@@ -5,7 +5,7 @@
 
 $id = isset($_GET["id"])? $_GET["id"]:"";
 
-mysql_connect("getitback.db.7109191.hostedresource.com","getitback","Kill3rd0nk3y");
+mysql_connect("getitback.db.7109191.hostedresource.com","getitback","");
 mysql_select_db("getitback");
 
 $result = mysql_query("SELECT description, date, personTwo, personTwoName,money FROM money where personOne='".$id."'");
