@@ -3,10 +3,10 @@
  * Pull data for a given id from the database
  */
 
+include_once('config.php');
+
 $id = isset($_GET["id"])? $_GET["id"]:"";
 
-$con = mysql_connect("getitback.db.7109191.hostedresource.com","getitback","Kill3rd0nk3y") OR DIE("connection failed");
-mysql_select_db("getitback");
 
 
 $personData = array();
@@ -22,8 +22,6 @@ $temp["totalToCollect"] = $totalCollect;
 $temp["totalReturn"] = $totalReturn;
 array_push($personData[$id], $temp);
 
-
-mysql_close($con);
 	
 echo json_encode($personData);
 
@@ -32,7 +30,7 @@ echo json_encode($personData);
 //return sum of all the money
 function getTotalMoneyReturn($personTwo)
 {
-	$query = "SELECT SUM(money) as total FROM money WHERE personTwo='".$personTwo."'";
+	$query = "SELECT SUM(amount) as total FROM money WHERE personTwo='".$personTwo."'";
 	$result = mysql_query($query);
 	$total = mysql_fetch_assoc($result);
 	return $total["total"];
@@ -42,7 +40,7 @@ function getTotalMoneyReturn($personTwo)
 //instances where personOne = param1 and personTwo = param2
 function getTotalMoneyOwed($personOne, $personTwo)
 {
-	$query = "SELECT SUM(money) as total FROM money WHERE personOne='".$personOne."'";
+	$query = "SELECT SUM(amount) as total FROM money WHERE personOne='".$personOne."'";
 	$result = mysql_query($query);
 	$total = mysql_fetch_assoc($result);
 	return $total["total"];

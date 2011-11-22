@@ -15,7 +15,14 @@ $date = isset($_POST["date"])? $_POST["date"]:"";
 $amount = isset($_POST["amount"])? $_POST["amount"]:"";
 
 
-$query = "INSERT INTO money(description, date, personOne,personOneName, personTwo, personTwoName, money) VALUES('".$description."','".$date."','".$personOne."','".
+$query = "INSERT INTO money(description, date, personOne,personOneName, personTwo, personTwoName, amount) VALUES('".$description."','".$date."','".$personOne."','".
 				$personOneName."','".$personTwo."','".$personTwoName."','".$amount."')";
-mysql_query($query);
+if(mysql_query($query))
+{
+	echo "S";
+}
+else
+{
+	echo "F";
+}
 ?>
